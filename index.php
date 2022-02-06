@@ -19,7 +19,7 @@ $connectionInfo = array("UID" => "admin1", "pwd" => "{your_password_here}", "Dat
 $serverName = "tcp:assignmentserver01.database.windows.net,1433";
 $conn = sqlsrv_connect($serverName, $connectionInfo);
     
-    $sql = "SELECT id, place, type FROM dbo.earthquake";
+    $sql = "SELECT * FROM dbo.earthquake";
 $result = $conn->query($sql);
 echo $result;
 /*if ($result->num_rows > 0) {
