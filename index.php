@@ -1,9 +1,13 @@
 <html>
     <head>
-        <h2>Head</h2>
+        <h1>Hello World</h1>
 </head>
 <body>
-    <?php
+    
+    <h2> WELCOME </h2>
+</body>
+</html>
+<?php
 // PHP Data Objects(PDO) Sample Code:
 try {
     $conn = new PDO("sqlsrv:server = tcp:assignmentserver01.database.windows.net,1433; Database = adbserver", "admin1", "{Ajithsivadas#1}");
@@ -31,6 +35,3 @@ echo $result;
     echo "0 results";*/
 }
 ?>
-    
-</body>
-</html>
