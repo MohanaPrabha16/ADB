@@ -18,6 +18,19 @@ catch (PDOException $e) {
 $connectionInfo = array("UID" => "admin1", "pwd" => "{your_password_here}", "Database" => "adbserver", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
 $serverName = "tcp:assignmentserver01.database.windows.net,1433";
 $conn = sqlsrv_connect($serverName, $connectionInfo);
+    
+    $sql = "SELECT id, place, type FROM dbo.earthquake";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+        echo "id: " . $row["id"]. " - Place: " . $row["place"]. " " . $row["type"]. "<br>";
+    }
+} else {
+    echo "0 results";
+}
 ?>
+    
 </body>
 </html>
