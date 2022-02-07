@@ -8,7 +8,7 @@
 <body>
 <fieldset>
 <legend>Contact Form</legend>
-<form name="frmContact" method="post" action="index.php">
+<form name="frmContact" method="post" action="<?php echo $PHP_SELF;?>">
 <p>
 <label for="Name">Name </label>
 <input type="text" name="txtName" id="txtName">
@@ -31,8 +31,7 @@
 </p>
 </form>
 </fieldset>
-</body>
-<!-- <?php
+    <?php
 // PHP Data Objects(PDO) Sample Code:
 try {
     $conn = new PDO("sqlsrv:server = tcp:assignmentserver01.database.windows.net,1433; Database = adbserver", "admin1", "{Ajithsivadas#1}");
@@ -59,7 +58,9 @@ if ($result->num_rows > 0) {
 } else {
     echo "0 results";
 }
-?> -->
+?> 
+</body>
+
 </html>
 
 
