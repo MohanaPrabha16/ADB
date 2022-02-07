@@ -46,10 +46,10 @@ try {
 
     // Executes the query
     $stmt = $conn->query("$sql");
-    $row = $stmt->fetchAll();
-    while($row)
+    $rows = $stmt->fetchAll();
+    foreach ($rows as $row) {
     {
-    echo "$row[0] $row[1] $row[2]";
+    echo "$row["time"] $row["latitude"] $row["longitude"]";
     }
     $conn=NULL;
 } catch (PDOException $exception1) {die(print_r($e));
