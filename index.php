@@ -36,27 +36,31 @@
 try {
     $serverName = "tcp:assignmentserver01.database.windows.net,1433";
     $databaseName = "adbserver";
-    $uid = "admin1";
+    $uid = "admin1@assignmentserver01";
     $pwd = "Ajithsivadas#1";
     
     $conn = new PDO("sqlsrv:server = $serverName; Database = $databaseName;", $uid, $pwd);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // Select Query
-    $tsql = "SELECT * FROM earthquake";
+    $sql = "SELECT TOP 1 * FROM earthquake";
 
     // Executes the query
-    $stmt = $conn->query($tsql);
-} catch (PDOException $exception1) {
-    echo "<h1>Caught PDO exception:</h1>";
-    echo $exception1->getMessage() . PHP_EOL;
-    echo "<h1>PHP Info for troubleshooting</h1>";
-    phpinfo();
+    $stmt = $conn->query("$sql");
+    $row = $stmt->fetch();
+    echo "$row[0] $row[1] $row[2]";
+    $conn=NULL;
+} catch (PDOException $exception1) {die(print_r($e));
+//     echo "<h1>Caught PDO exception:</h1>";
+//     echo $exception1->getMessage() . PHP_EOL;
+//     echo "<h1>PHP Info for troubleshooting</h1>";
+//     phpinfo();
 }
 
 ?>
 
 <h1> Success Results : </h1>
-
+<!-- 
 <?php
 try {
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -72,7 +76,7 @@ unset($stmt);
 unset($conn);
 ?>
 ?>
-</body>
+</body> -->
 
 </html>
 
