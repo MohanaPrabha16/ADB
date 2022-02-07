@@ -42,13 +42,13 @@ try {
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // Select Query
-    $sql = "SELECT TOP 5 * FROM earthquake";
+    $sql = "SELECT * FROM earthquake";
 
     // Executes the query
-    $result = $conn->query("$sql");
+    $result = $conn->query($sql);
     if($result->nums_rows > 0){
         while($row = $result-> fetch_assoc()){
-            echo "<tr><td>".$row["0"] . "</td><td>".$row[1] . "</td><td>".$row["longitude"] . "</td><tr>"; 
+            echo "<tr><td>".$row["time"] . "</td><td>".$row["latitude"] . "</td><td>".$row["longitude"] . "</td><tr>"; 
     }
     }
     else{
