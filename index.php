@@ -31,7 +31,8 @@
 </p>
 </form>
 </fieldset>
-    <?php
+<?php
+    echo "ENTERED";
 // PHP Data Objects(PDO) Sample Code:
 try {
     $conn = new PDO("sqlsrv:server = tcp:assignmentserver01.database.windows.net,1433; Database = adbserver", "admin1", "{Ajithsivadas#1}");
