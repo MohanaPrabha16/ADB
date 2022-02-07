@@ -46,18 +46,8 @@ try {
 
     // Executes the query
     $stmt = $conn->query("$sql");
-    $stmt->store_result();
-    if( $stmt->num_rows > 0 )
-    {
     $row = $stmt->fetch();
-        while($row){
-            echo "<tr><td>".$row[0] . "</td><td>".$row[1] . "</td><td>".$row[2] . "</td><tr>"; 
-    }
-    }
-    else
-    {
-      echo "No Data"
-    }
+    echo "$row[0] $row[1] $row[2]";
     $conn=NULL;
 } catch (PDOException $exception1) {die(print_r($e));
 //     echo "<h1>Caught PDO exception:</h1>";
