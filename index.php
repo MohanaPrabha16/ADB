@@ -1,37 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Contact Form - PHP/MySQL Demo Code</title>
 </head>
 
 <body>
-<fieldset>
-<legend>Contact Form</legend>
-<form name="frmContact" method="post" action="<?php echo $PHP_SELF;?>">
-<p>
-<label for="Name">Name </label>
-<input type="text" name="txtName" id="txtName">
-</p>
-<p>
-<label for="email">Email</label>
-<input type="text" name="txtEmail" id="txtEmail">
-</p>
-<p>
-<label for="phone">Phone</label>
-<input type="text" name="txtPhone" id="txtPhone">
-</p>
-<p>
-<label for="message">Message</label>
-<textarea name="txtMessage" id="txtMessage"></textarea>
-</p>
-<p>&nbsp;</p>
-<p>
-<input type="submit" name="Submit" id="Submit" value="Submit">
-</p>
-</form>
-</fieldset>
-<?php
+
+
 <?php
 try {
     $serverName = "tcp:assignmentserver01.database.windows.net,1433";
@@ -59,24 +34,9 @@ try {
 
 ?>
 
-<h1> Success Results : </h1>
-<!-- 
-<?php
-try {
-    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        echo $row['SQL_VERSION'] . PHP_EOL;
-    }
-} catch (PDOException $exception2) {
-    // Display errors
-    echo "<h1>Caught PDO exception:</h1>";
-    echo $exception2->getMessage() . PHP_EOL;
-}
 
-unset($stmt);
-unset($conn);
-?>
-?>
-</body> -->
+
+</body>
 
 </html>
 
