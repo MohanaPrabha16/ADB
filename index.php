@@ -42,18 +42,14 @@ try {
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // Select Query
-    $sql = "SELECT * FROM earthquake";
+    $sql = "SELECT TOP 2 * FROM earthquake";
 
     // Executes the query
     $stmt = $conn->query("$sql");
-    $row = $stmt->fetch_assoc();
-    if($row > 0){
+    $row = $stmt->fetch();
         while($row){
             echo "<tr><td>".$row[0] . "</td><td>".$row[1] . "</td><td>".$row[2] . "</td><tr>"; 
     }
-    }
-    else{
-    echo "No Results";
     }
     $conn=NULL;
 } catch (PDOException $exception1) {die(print_r($e));
