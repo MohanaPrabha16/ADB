@@ -11,6 +11,7 @@
         <th>col1</th>
         <th>col1</th>
         <th>col1</th>
+<!--         <th>col1</th>
         <th>col1</th>
         <th>col1</th>
         <th>col1</th>
@@ -28,8 +29,7 @@
         <th>col1</th>
         <th>col1</th>
         <th>col1</th>
-        <th>col1</th>
-        <th>col1</th>
+        <th>col1</th> -->
     </tr>
 <?php
 try {
@@ -48,7 +48,7 @@ try {
     $result = $conn->query("$sql");
     if($result->nums_rows > 0){
         while($row = $result-> fetch_assoc()){
-            echo "<tr><td>". $row["time"] ."<tr><td>". $row["latitude"] ."<tr><td>". $row["longitude"] ."<tr><td>". $row["depth"] ."<tr><td>". $row["mag"] ."<tr><td>". $row["magType"] ."<tr><td>". $row["nst"] ."<tr><td>". $row["gap"] ."<tr><td>". $row["dmin"] ."<tr><td>". $row["rms"] ."<tr><td>". $row["net"] ."<tr><td>". $row["id"] ."<tr><td>". $row["updated"] ."<tr><td>". $row["place"] ."<tr><td>". $row["type"] ."<tr><td>". $row["horizontalError"] ."<tr><td>". $row["depthError"] ."<tr><td>". $row["magError"] ."<tr><td>". $row["magNst"] ."<tr><td>". $row["status"] ."<tr><td>". $row["locationSource"] ."<tr><td>". $row["magSource"] ."</t
+            echo "<tr><td>".$row["time"] . "</td><td>".$row["latitude"] . "</td><td>".$row["longitude"] . "</td><tr>"; 
     }
     }
     else{
