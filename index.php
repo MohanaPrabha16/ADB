@@ -26,10 +26,24 @@ try {
     echo "$row[0] $row[1] $row[2]";
     $conn=NULL;
 } catch (PDOException $exception1) {die(print_r($e));
-//     echo "<h1>Caught PDO exception:</h1>";
-//     echo $exception1->getMessage() . PHP_EOL;
-//     echo "<h1>PHP Info for troubleshooting</h1>";
-//     phpinfo();
+echo "<table border='1'>
+<tr>
+<th>Id</th>
+<th>name</th>
+<th>Mobile</th>
+<th>email</th>
+</tr>";
+ 
+while($row = mysql_fetch_array($result))
+  {
+  echo "<tr>";
+  echo "<td>" . $row[0] . "</td>";
+  echo "<td>" . $row[1] . "</td>";
+  echo "<td>" . $row[2] . "</td>";
+  echo "<td>" . $row[3] . "</td>";
+  echo "</tr>";
+  }
+echo "</table>";
 }
 
 ?>
