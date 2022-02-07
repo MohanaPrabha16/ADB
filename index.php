@@ -23,6 +23,7 @@ try {
     // Executes the query
     $stmt = $conn->query("$sql");
     $row = $stmt->fetch();
+    echo "<th><tr>mag type</tr><tr>id</tr></th>"
     echo "$row[0] $row[1] $row[2]";
     $conn=NULL;
 } catch (PDOException $exception1) {die(print_r($e));
