@@ -48,7 +48,7 @@ try {
     $result = $conn->query("$sql");
     if($result->nums_rows > 0){
         while($row = $result-> fetch_assoc()){
-            echo "<tr><td>".$row["0"] . "</td><td>".$row["latitude"] . "</td><td>".$row["longitude"] . "</td><tr>"; 
+            echo "<tr><td>".$row["0"] . "</td><td>".$row[1] . "</td><td>".$row["longitude"] . "</td><tr>"; 
     }
     }
     else{
