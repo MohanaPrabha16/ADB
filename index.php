@@ -18,7 +18,7 @@ try {
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // Select Query
-    $sql = "SELECT TOP 4 * FROM earthquake";
+    $sql = "SELECT TOP 1 * FROM earthquake";
    
     // Executes the query
     $stmt = $conn->query("$sql");
