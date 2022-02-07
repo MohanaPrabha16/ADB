@@ -45,10 +45,11 @@ try {
     $sql = "SELECT * FROM earthquake";
 
     // Executes the query
-    $result = $conn->query($sql);
-    if($result->nums_rows > 0){
-        while($row = $result-> fetch_assoc()){
-            echo "<tr><td>".$row["time"] . "</td><td>".$row["latitude"] . "</td><td>".$row["longitude"] . "</td><tr>"; 
+    $stmt = $conn->query("$sql");
+    $row = $stmt->fetch_assoc();
+    if($row > 0){
+        while($row){
+            echo "<tr><td>".$row["time"] . "</td><td>".$row[1] . "</td><td>".$row["longitude"] . "</td><tr>"; 
     }
     }
     else{
