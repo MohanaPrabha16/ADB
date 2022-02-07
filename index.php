@@ -45,7 +45,9 @@ catch (PDOException $e) {
 
 // SQL Server Extension Sample Code:
 $connectionInfo = array("UID" => "admin1", "pwd" => "{your_password_here}", "Database" => "adbserver", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
+    echo $connectionInfo;
 $serverName = "tcp:assignmentserver01.database.windows.net,1433";
+    echo $serverName;
 $conn = sqlsrv_connect($serverName, $connectionInfo);
     echo "CONNECTION SUCCESS";
     $sql = "SELECT * FROM [dbo].[earthquake]";
