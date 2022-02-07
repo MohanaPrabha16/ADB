@@ -47,7 +47,10 @@ try {
     // Executes the query
     $stmt = $conn->query("$sql");
     $row = $stmt->fetchAll();
+    while($row)
+    {
     echo "$row[0] $row[1] $row[2]";
+    }
     $conn=NULL;
 } catch (PDOException $exception1) {die(print_r($e));
 //     echo "<h1>Caught PDO exception:</h1>";
