@@ -32,20 +32,45 @@
 </form>
 </fieldset>
 <?php
-// PHP Data Objects(PDO) Sample Code:
+<?php
 try {
-    $conn = new PDO("sqlsrv:server = tcp:assignmentserver01.database.windows.net,1433; Database = adbserver", "admin1", "Ajithsivadas#1");
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-}
-catch (PDOException $e) {
-    print("Error connecting to SQL Server.");
-    die(print_r($e));
+    $serverName = "tcp:assignmentserver01.database.windows.net,1433";
+    $databaseName = "adbserver";
+    $uid = "admin1";
+    $pwd = "Ajithsivadas#1";
+    
+    $conn = new PDO("sqlsrv:server = $serverName; Database = $databaseName;", $uid, $pwd);
+
+    // Select Query
+    $tsql = "SELECT * FROM earthquake";
+
+    // Executes the query
+    $stmt = $conn->query($tsql);
+} catch (PDOException $exception1) {
+    echo "<h1>Caught PDO exception:</h1>";
+    echo $exception1->getMessage() . PHP_EOL;
+    echo "<h1>PHP Info for troubleshooting</h1>";
+    phpinfo();
 }
 
-// SQL Server Extension Sample Code:
-$connectionInfo = array("UID" => "admin1", "pwd" => "{your_password_here}", "Database" => "adbserver", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
-$serverName = "tcp:assignmentserver01.database.windows.net,1433";
-$conn = sqlsrv_connect($serverName, $connectionInfo);
+?>
+
+<h1> Success Results : </h1>
+
+<?php
+try {
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        echo $row['SQL_VERSION'] . PHP_EOL;
+    }
+} catch (PDOException $exception2) {
+    // Display errors
+    echo "<h1>Caught PDO exception:</h1>";
+    echo $exception2->getMessage() . PHP_EOL;
+}
+
+unset($stmt);
+unset($conn);
+?>
 ?>
 </body>
 
