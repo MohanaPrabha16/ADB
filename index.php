@@ -49,6 +49,7 @@ $serverName = "tcp:assignmentserver01.database.windows.net,1433";
 $conn = sqlsrv_connect($serverName, $connectionInfo);
     echo "CONNECTION SUCCESS";
     $sql = "SELECT * FROM [dbo].[earthquake]";
+    echo $sql;
 $result = $conn->query($sql);
 echo $result;
 if ($result->num_rows > 0) {
