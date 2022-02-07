@@ -18,8 +18,13 @@ try {
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // Select Query
-    $sql = "SELECT TOP 1 * FROM earthquake";
-    echo "<table border='1'>
+    $sql = "SELECT TOP 4 * FROM earthquake";
+   
+    // Executes the query
+    $stmt = $conn->query("$sql");
+    $row = $stmt->fetch();
+    echo "$row[0] $row[1] $row[2]";
+     echo "<table border='1'>
 <tr>
 <th>Id</th>
 <th>name</th>
@@ -27,7 +32,7 @@ try {
 <th>email</th>
 </tr>";
  
-while($row = mysql_fetch_array($result))
+while($row = mysql_fetch_array($sql))
   {
   echo "<tr>";
   echo "<td>" . $row[0] . "</td>";
@@ -39,10 +44,6 @@ while($row = mysql_fetch_array($result))
 echo "</table>";
 }
 
-    // Executes the query
-    $stmt = $conn->query("$sql");
-    $row = $stmt->fetch();
-    echo "$row[0] $row[1] $row[2]";
     $conn=NULL;
 } catch (PDOException $exception1) {die(print_r($e));
 
