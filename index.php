@@ -22,26 +22,26 @@ try {
    
     // Executes the query
     $stmt = $conn->query("$sql");
-//     $row = $stmt->fetch();
-//     echo "$row[0] $row[1] $row[2]";
-     echo "<table border='1'>
-<tr>
-<th>Id</th>
-<th>name</th>
-<th>Mobile</th>
-<th>email</th>
-</tr>";
+    $row = $stmt->fetch();
+    echo "$row[0] $row[1] $row[2]";
+//      echo "<table border='1'>
+// <tr>
+// <th>Id</th>
+// <th>name</th>
+// <th>Mobile</th>
+// <th>email</th>
+// </tr>";
  
-while($row = mysql_fetch_array($sql))
-  {
-  echo "<tr>";
-  echo "<td>" . $row[0] . "</td>";
-  echo "<td>" . $row[1] . "</td>";
-  echo "<td>" . $row[2] . "</td>";
-  echo "<td>" . $row[3] . "</td>";
-  echo "</tr>";
-  }
-echo "</table>";
+// while($row = mysql_fetch_array($sql))
+//   {
+//   echo "<tr>";
+//   echo "<td>" . $row[0] . "</td>";
+//   echo "<td>" . $row[1] . "</td>";
+//   echo "<td>" . $row[2] . "</td>";
+//   echo "<td>" . $row[3] . "</td>";
+//   echo "</tr>";
+//   }
+// echo "</table>";
 }
 
     $conn=NULL;
