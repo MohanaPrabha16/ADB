@@ -49,7 +49,7 @@ try {
     $row = $stmt->fetch_assoc();
     if($row > 0){
         while($row){
-            echo "<tr><td>".$row["time"] . "</td><td>".$row[1] . "</td><td>".$row["longitude"] . "</td><tr>"; 
+            echo "<tr><td>".$row[0] . "</td><td>".$row[1] . "</td><td>".$row[2] . "</td><tr>"; 
     }
     }
     else{
