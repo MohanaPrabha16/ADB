@@ -19,14 +19,7 @@ try {
 
     // Select Query
     $sql = "SELECT TOP 1 * FROM earthquake";
-
-    // Executes the query
-    $stmt = $conn->query("$sql");
-    $row = $stmt->fetch();
-    echo "$row[0] $row[1] $row[2]";
-    $conn=NULL;
-} catch (PDOException $exception1) {die(print_r($e));
-echo "<table border='1'>
+    echo "<table border='1'>
 <tr>
 <th>Id</th>
 <th>name</th>
@@ -45,6 +38,14 @@ while($row = mysql_fetch_array($result))
   }
 echo "</table>";
 }
+
+    // Executes the query
+    $stmt = $conn->query("$sql");
+    $row = $stmt->fetch();
+    echo "$row[0] $row[1] $row[2]";
+    $conn=NULL;
+} catch (PDOException $exception1) {die(print_r($e));
+
 
 ?>
 
