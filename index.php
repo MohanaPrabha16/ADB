@@ -50,7 +50,7 @@ $serverName = "tcp:assignmentserver01.database.windows.net,1433";
     echo $serverName;
 $conn = sqlsrv_connect($serverName, $connectionInfo);
     echo "CONNECTION SUCCESS";
-    $sql = "SELECT * FROM [dbo].[earthquake]";
+    $sql = "SELECT * FROM earthquake";
     echo $sql;
 $result = $conn->query($sql);
 echo $result;
