@@ -1,13 +1,3 @@
-<html>
-    <head>
-        <h1>Hello World</h1>
-</head>
-<body>
-    
-    <h2> WELCOME </h2>
-</body>
-</html>
-<?php
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -42,9 +32,7 @@
 </form>
 </fieldset>
 </body>
-</html>
-?>
-<?php
+    <?php
 // PHP Data Objects(PDO) Sample Code:
 try {
     $conn = new PDO("sqlsrv:server = tcp:assignmentserver01.database.windows.net,1433; Database = adbserver", "admin1", "{Ajithsivadas#1}");
@@ -60,7 +48,7 @@ $connectionInfo = array("UID" => "admin1", "pwd" => "{your_password_here}", "Dat
 $serverName = "tcp:assignmentserver01.database.windows.net,1433";
 $conn = sqlsrv_connect($serverName, $connectionInfo);
     
-    $sql = "SELECT * FROM earthquake";
+    $sql = "SELECT * FROM [dbo].[earthquake]";
 $result = $conn->query($sql);
 echo $result;
 /*if ($result->num_rows > 0) {
@@ -72,3 +60,6 @@ echo $result;
     echo "0 results";*/
 }
 ?>
+</html>
+?>
+
