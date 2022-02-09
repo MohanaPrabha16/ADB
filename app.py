@@ -5,7 +5,16 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('main.html')
+    array1=[]
+    conn = pymssql.connect(server='serveradb.database.windows.net', user='admin1@serveradb', password='Ajithsivadas#1', database='assignment1')
+    cursor = conn.cursor()
+    q1="select * from [dbo].[data]" 
+    cursor.execute(q1)
+    result=cursor.fetchall()
+    for i in result:
+        j=numpy.asarray(i)
+        array1.append(j)
+    return render_template('main.html',result=array1)
 
 @app.route('/search', methods=['GET', 'POST'])
 def search():

@@ -10,6 +10,37 @@
     
 </div>
 
+<div class="container" style="text-align: center;">
+    {% if result|length>0 %}
+    <div class="table-responsive">
+    <table class="table table-striped">
+    <thead>
+    <tr>
+    <th scope="col">object</th>
+    <th scope="col">min</th>
+    <th scope="col">max</th>
+    <th scope="col">picture</th>
+    <th scope="col">charm</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for data in result %}
+    <tr>
+    <td>{{ data[0] }}</td>
+    <td>{{ data[1] }}</td>
+    <td>{{ data[2] }}</td>
+    <td>{{ data[3] }}</td>
+    <td>{{ data[4] }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+    </div>
+    {% else %}
+    <h4>No data available..</h4>
+    {% endif %}
+    
+    </div>
 
 
 
