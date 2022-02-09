@@ -1,22 +1,31 @@
 <!DOCTYPE html>
 <html>
-    <h1>Search Users</h1>
-    <body>
-        <div>
-        <form action="/search" method="POST" >
-            <input type="text" name="fname" placeholder="name">
-            <br>
-            <br>
-            <input type="submit" value="Search" class="btn btn-primary btn-sm" />
-        </form>
-    <br>
-        </div>
-    <div>
-    {% if user %}
-    <img src="https://assignment1storage.blob.core.windows.net/assignemnt1/{{ user }}" width="50%" alt="" class="img-fluid">
-    {% else %}
-    <h5>No image found</h5>
-    {% endif %}
-    </div>
-    </body>
+    <h1>Results </h1>
+    <div class="container">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Year</th>
+        <th scope="col">Picture</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% if picture|length>0 %} 
+      <tr>
+        <td>{{year}}</td>
+        <td>
+          <img
+            src="https://newstorage1adb.blob.core.windows.net/test/{{ picture }}"
+            class="img-fluid"
+          />
+        </td>
+      </tr>
+      {% else %}
+      <tr colspan="6" style="text-align: center;">
+        <td>Name Doesn't Exist</td>
+      </tr>
+      {% endif %}
+    </tbody>
+  </table>
+
 </html>

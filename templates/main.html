@@ -5,54 +5,27 @@
 <h2>1001886353</h2>
 </div>
 
+<div style="text-align: center;">
+    <img src="https://newstorage1adb.blob.core.windows.net/test/knuth.jpeg" width="50%" alt="" class="img-fluid">
+    
 </div>
 
-<div class="container" style="text-align: center;">
-{% if result|length>0 %}
-<div class="table-responsive">
-<table class="table table-striped">
-<thead>
-<tr>
-<th scope="col">Name</th>
-<th scope="col">State</th>
-<th scope="col">Salary</th>
-<th scope="col">Grade</th>
-<th scope="col">Room</th>
-<th scope="col">Telenum</th>
-<th scope="col">Picture</th>
-<th scope="col">Keyword</th>
-</tr>
-</thead>
-<tbody>
-{% for data in result %}
-<tr>
-<td>{{ data[0] }}</td>
-<td>{{ data[1] }}</td>
-<td>{{ data[2] }}</td>
-<td>{{ data[3] }}</td>
-<td>{{ data[4] }}</td>
-<td>{{ data[5] }}</td>
-<td>{{ data[6] }}</td>
-<td>{{ data[7] }}</td>
-</tr>
-{% endfor %}
-</tbody>
-</table>
-</div>
-{% else %}
-<h4>No data available..</h4>
-{% endif %}
-
-</div>
-<h1>Search Users</h1>
+<div>
+    <div style="text-align: center;">
+        <h1>Search Users</h1>
+    </div>
         <div>
             <form action="/search" method="post">
                 <h4 class="font-weight-bold">Find picture via person</h4>
-                <input type="text" name="name" class="form-control" placeholder="Chris"  />
+                <input type="text" name="name" class="form-control" placeholder="Enter a name"  />
                 <br>
                 <input type="submit" value="Search" class="btn btn-primary btn-sm" />
               </form>
 
         </div>
+</div>
+
+
 
 </html>
+ 
