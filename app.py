@@ -16,21 +16,21 @@ def index():
         array1.append(j)
     return render_template('main.html',result=array1)
 
-@app.route('/search', methods=['POST', 'GET'])
-def search_users():
-    # if request.method == 'POST':
-    #     first_name = request.form.get("name")
-    #     print(first_name)
-    #     if first_name is not None:
-    #         q1 = "SELECT * FROM [dbo].[people] WHERE NAME = '" + first_name + "'"
-    #     else:
-    #         print("Empty value")
-    #     conn = pymssql.connect(server='serveradb.database.windows.net', user='admin1@serveradb', password='Ajithsivadas#1', database='assignment1')
-    #     cursor = conn.cursor()
-    #     cursor.execute(q1)
-    #     result=cursor.fetchall()
-    #     print(result[0][6])
-        return render_template('search_user.html', user='chuck.jpg')
+@app.route('/search', methods=['GET', 'POST'])
+def search():
+    if request.method == 'POST':
+        first_name = request.form.get("name")
+        print(first_name)
+        if first_name is not None:
+            q1 = "SELECT * FROM [dbo].[people] WHERE NAME = '" + first_name + "'"
+        else:
+            print("Empty value")
+        conn = pymssql.connect(server='serveradb.database.windows.net', user='admin1@serveradb', password='Ajithsivadas#1', database='assignment1')
+        cursor = conn.cursor()
+        cursor.execute(q1)
+        result=cursor.fetchall()
+        print(result[0][6])
+        return render_template('search_user.html', user=result[0][6])
 
     
 
