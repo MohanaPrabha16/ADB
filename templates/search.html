@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <h1>Search Users</h1>
+    <body>
+        <div>
+        <form action="/search" method="POST" >
+            <input type="text" name="fname" placeholder="name">
+            <br>
+            <br>
+            <input type="submit" value="Search" class="btn btn-primary btn-sm" />
+        </form>
+    <br>
+        </div>
+    <div>
+    {% if user %}
+    <img src="https://assignment1storage.blob.core.windows.net/assignemnt1/{{ user }}" width="50%" alt="" class="img-fluid">
+    {% else %}
+    <h5>No image found</h5>
+    {% endif %}
+    </div>
+    </body>
+</html>
