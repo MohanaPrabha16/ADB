@@ -16,23 +16,11 @@
     <th scope="col">longitude</th>
     <th scope="col">depth</th>
     <th scope="col">mag</th>
-    <th scope="col">magType</th>
-    <th scope="col">nst</th>
+    <th scope="col">type</th>
     <th scope="col">gap</th>
-    <th scope="col">dmin</th>
-    <th scope="col">rms</th>
     <th scope="col">net</th>
     <th scope="col">id</th>
-    <th scope="col">updated</th>
     <th scope="col">place</th>
-    <th scope="col">type</th>
-    <th scope="col">horizontalError</th>
-    <th scope="col">depthError</th>
-    <th scope="col">magError</th>
-    <th scope="col">magNst</th>
-    <th scope="col">status</th>
-    <th scope="col">locationSource</th>
-    <th scope="col">magSource</th>
     </tr>
     </thead>
     <tbody>
@@ -48,18 +36,6 @@
     <td>{{ data[7] }}</td>
     <td>{{ data[8] }}</td>
     <td>{{ data[9] }}</td>
-    <td>{{ data[10] }}</td>
-    <td>{{ data[11] }}</td>
-    <td>{{ data[12] }}</td>
-    <td>{{ data[13] }}</td>
-    <td>{{ data[14] }}</td>
-    <td>{{ data[15] }}</td>
-    <td>{{ data[16] }}</td>
-    <td>{{ data[17] }}</td>
-    <td>{{ data[18] }}</td>
-    <td>{{ data[19] }}</td>
-    <td>{{ data[20] }}</td>
-    <td>{{ data[21] }}</td>
     </tr>
     {% endfor %}
     </tbody>
@@ -70,6 +46,39 @@
     {% endif %}
     
     </div>
+
+<hr>
+<divclass="container">
+
+<h4style="font-weight:bold"> Task 1:</h4>
+
+
+
+<form action="/1" method="POST">
+<label> Latitude: </label><input type="text" name="latitude" value="59.00" required><br>
+<label> N: </label><input type="text" name="degree" value="35" required><br>
+
+<input type="submit" value="Show Details" class="btn btn-primary"/>
+</form>
+<br>
+</div>
+
+<divclass="container">
+
+<h4 style="font-weight:bold"> Task 2:</h4>
+
+
+
+<form action="/2" method="POST">
+<label> place: </label><input type="text" name="place" value="CA" required><br>
+<label> Mag From : </label><input type="text" name="mag" value="2" required><br>
+<label> Mag To : </label><input type="text" name="mag" value="200" required><br>
+
+
+<input type="submit" value="Show Details" class="btn btn-primary"/>
+</form>
+<br>
+
 
 
 
