@@ -6,9 +6,9 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     array1=[]
-    return render_template('main.html')
-    q1="select * from [dbo].[earthquakes]" 
+    q1='select * from [dbo].[earthquakes]'
     conn = pymssql.connect(server='serveradb.database.windows.net', user='admin1', password='Ajithsivadas#1', database='assignment1')
+    cursor = conn.cursor()
     cursor.execute(q1)
     result=cursor.fetchall()
     for i in result:
