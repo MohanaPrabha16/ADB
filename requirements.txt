@@ -2,3 +2,4 @@ Flask
 pymssql
 numpy
 redis
+pandas
