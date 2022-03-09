@@ -1,3 +1,10 @@
+<!-- MOHANA PRABHA PALANISAMY
+1001886353
+CSE 6331 - Assignment 03 -->
+
+
+
+
 <!DOCTYPE html>
 <html>
 <div style="text-align: center;">
@@ -5,82 +12,79 @@
 <h2>1001886353</h2>
 </div>
 
-<div class="container" style="text-align: center;">
-    {% if result|length>0 %}
-    <div class="table-responsive">
-    <table class="table table-striped">
-    <thead>
-    <tr>
-    <th scope="col">time</th>
-    <th scope="col">latitude</th>
-    <th scope="col">longitude</th>
-    <th scope="col">depth</th>
-    <th scope="col">mag</th>
-    <th scope="col">type</th>
-    <th scope="col">gap</th>
-    <th scope="col">net</th>
-    <th scope="col">id</th>
-    <th scope="col">place</th>
-    </tr>
-    </thead>
-    <tbody>
-    {% for data in result %}
-    <tr>
-    <td>{{ data[0] }}</td>
-    <td>{{ data[1] }}</td>
-    <td>{{ data[2] }}</td>
-    <td>{{ data[3] }}</td>
-    <td>{{ data[4] }}</td>
-    <td>{{ data[5] }}</td>
-    <td>{{ data[6] }}</td>
-    <td>{{ data[7] }}</td>
-    <td>{{ data[8] }}</td>
-    <td>{{ data[9] }}</td>
-    </tr>
-    {% endfor %}
-    </tbody>
-    </table>
-    </div>
-    {% else %}
-    <h4>No data available..</h4>
-    {% endif %}
-    
-    </div>
 
 <hr>
 <divclass="container">
 
-<h4style="font-weight:bold"> Task 1:</h4>
+<h4 style="font-weight:bold"> Task 1:</h4>
 
 
 
 <form action="/1" method="POST">
-<label> Latitude: </label><input type="text" name="latitude" value="59.00" required><br>
-<label> N: </label><input type="text" name="degree" value="35" required><br>
-
-<input type="submit" value="Show Details" class="btn btn-primary"/>
+<label> Enter a Table Name: </label>
+<input type="text" name="tablename" value=" " required><br>
+<input type="submit" value="Show Details for RDB" class="btn btn-primary"/>
 </form>
 <br>
 </div>
+{% if result %}
+<h4>Time elapsed: {{result}} seconds</h4>
 
+<h4>Table has been Created</h4> 
+
+{% endif %}
 <divclass="container">
 
 <h4 style="font-weight:bold"> Task 2:</h4>
 
 
 
-<form action="/2" method="POST">
-<label> place: </label><input type="text" name="place" value="CA" required><br>
-<label> Mag From : </label><input type="text" name="mag" value="2" required><br>
-<label> Mag To : </label><input type="text" name="mag" value="200" required><br>
-
-
-<input type="submit" value="Show Details" class="btn btn-primary"/>
+<form action="/2" method="get">
+    <label> Enter a random value in RDB: </label>
+    <input type="text" name="rand" value=" " required><br>
+    <input type="submit" value="Show Details for RDB" class="btn btn-primary"/>
 </form>
 <br>
 
+<divclass="container">
+
+<h4 style="font-weight:bold"> Task 3:</h4>
 
 
 
+<form action="/3" method="get">
+        <label> Enter a random value in Redis: </label>
+        <input type="text" name="rand" value=" " required><br>
+        <input type="submit" value="Show Details for Redis" class="btn btn-primary"/>
+    </form>
+    <br>
+
+
+<divclass="container">
+
+<h4 style="font-weight:bold"> Task 4:</h4>
+
+
+
+<form action="/4" method="POST">
+<label> Location: </label><input type="text" name="location" value="" required><br>
+<label> Depth From : </label><input type="text" name="depthFrom" value="" required><br>
+<label> Depth To : </label><input type="text" name="depthTo" value="" required><br>
+
+
+<input type="submit" value="Show Details in RDB" class="btn btn-primary"/>
+</form>
+<br>
+
+<h4 style="font-weight:bold"> Task 5:</h4>
+
+<form action="/5" method="POST">
+    <label> Location: </label><input type="text" name="location1" value="" required><br>
+    <label> Depth From : </label><input type="text" name="depthFrom1" value="" required><br>
+    <label> Depth To : </label><input type="text" name="depthTo1" value="" required><br>
+    
+    <input type="submit" value="Show Details in Redis" class="btn btn-primary"/>
+    </form>
+    <br>
 </html>
  

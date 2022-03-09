@@ -1,3 +1,4 @@
 Flask
 pymssql
 numpy
+redis
