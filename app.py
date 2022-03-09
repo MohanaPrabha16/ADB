@@ -26,7 +26,7 @@ def createTable1():
     tablename= str(request.args.get('tablename'))
     array1=[]
     q1= "CREATE TABLE {}(time nvarchar(50) NOT NULL,latitude float NOT NULL,longitude float NOT NULL,depth float,mag float,type nvarchar(50) NOT NULL,gap float,net nvarchar(50),id nvarchar(50),place nvarchar(100));".format(tablename)
-    conn = pymssql.connect(server='adb1.database.windows.net', user='admin1', password='Ajithsivadas#1', database='AssignmentADB1')
+    conn = pymssql.connect(server='adb1.database.windows.net', user='admin1', port='1433', password='Ajithsivadas#1', database='AssignmentADB1')
     cursor = conn.cursor()
     cursor.execute(q1)
     end= time.time()
@@ -40,7 +40,7 @@ def random():
     rand= request.args.get('rand')
     print(rand)
     q1= "select top {}* from [dbo].[earthquakes] order by rand()".format(rand)
-    conn = pymssql.connect(server='adb1.database.windows.net', user='admin1', password='Ajithsivadas#1', database='AssignmentADB1')
+    conn = pymssql.connect(server='adb1.database.windows.net', user='admin1', port='1433', password='Ajithsivadas#1', database='AssignmentADB1')
     cursor = conn.cursor()
     cursor.execute(q1)
     result=cursor.fetchall()
@@ -60,7 +60,7 @@ def random_redis():
     rand= request.args.get('rand')
     print(rand)
     q1= "select top {}* from [dbo].[earthquakes] order by rand()".format(rand)
-    conn = pymssql.connect(server='adb1.database.windows.net', user='admin1', password='Ajithsivadas#1', database='AssignmentADB1')
+    conn = pymssql.connect(server='adb1.database.windows.net', user='admin1', port='1433', password='Ajithsivadas#1', database='AssignmentADB1')
     cursor = conn.cursor()
     key = hashlib.sha224(q1.encode('utf-8')).hexdigest()
     if (r.get(key)):
@@ -84,7 +84,7 @@ def c():
     list_of_data= []
 
     q1= "select * from [dbo].[earthquakes] where place like '%"+str(location)+"%'AND depth BETWEEN '"+str(depth_from)+"' AND '"+str(depth_to)+"'"
-    conn = pymssql.connect(server='adb1.database.windows.net', user='admin1', password='Ajithsivadas#1', database='AssignmentADB1')
+    conn = pymssql.connect(server='adb1.database.windows.net', user='admin1', port='1433', password='Ajithsivadas#1', database='AssignmentADB1')
     cursor = conn.cursor()
     cursor.execute(q1)
     result=cursor.fetchall()
@@ -105,7 +105,7 @@ def cd():
     list_of_data= []
 
     q1= "select * from [dbo].[earthquakes] where place like '%"+str(location)+"%'AND depth BETWEEN '"+str(depth_from)+"' AND '"+str(depth_to)+"'"
-    conn = pymssql.connect(server='adb1.database.windows.net', user='admin1', password='Ajithsivadas#1', database='AssignmentADB1')
+    conn = pymssql.connect(server='adb1.database.windows.net', user='admin1', port='1433', password='Ajithsivadas#1', database='AssignmentADB1')
     cursor = conn.cursor()
     key = hashlib.sha224(q1.encode('utf-8')).hexdigest()
     if (r.get(key)):
