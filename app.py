@@ -32,7 +32,7 @@ def createTable1():
     end= time.time()
     diff=end-start
     return render_template('main.html',result=diff)
-
+#5
 @app.route('/2',methods=['POST','get'])
 def random():
     start=time.time()
@@ -54,26 +54,23 @@ def random():
     return render_template('1.html',result=array1,time=diff)
 
 
-
+#6a
 @app.route('/3',methods=['POST','get'])
-def random_redis():
+def random1():
     start=time.time()
     array1=[]
-    idFrom=request.args.get('rangemax')
-    idTo = request.args.get('rangemin')
-    rand= request.args.get('rand')
+    idFrom=request.args.get('idFrom')
+    idTo = request.args.get('idTo')
+    rand= request.args.get('id')
     print(rand)
-    q1= "select n.id,n.name,d.pwd,d.code from [dbo].[ni] n inner join [dbo].[di] d on d.id = n.id where n.id between '"+str(range_min)+"' and '"+str(range_max)+"' order by id Desc ".format(rand)
+    q1= "select n.id,n.name,d.pwd,d.code from [dbo].[ni] n inner join [dbo].[di] d on d.id = n.id where n.id between '"+str(idFrom)+"' and '"+str(idTo)+"' order by id Desc "
     conn = pymssql.connect(server='adb1.database.windows.net', user='admin1', port='1433', password='Ajithsivadas#1', database='AssignmentADB1')
     cursor = conn.cursor()
-    key = hashlib.sha224(q1.encode('utf-8')).hexdigest()
-    if (r.get(key)):
-        print("redis cached ")
-    else:
-        cursor.execute(q1)
-        array1 = cursor.fetchall()
-        r.set(key, pickle.dumps(array1) )
-        r.expire(key, 3600)
+    cursor.execute(q1)
+    result=cursor.fetchall()
+    for i in result:
+        j=numpy.asarray(i)
+        array1.append(j)
     end=time.time()
     diff=end-start
     return render_template('1.html',result=array1,time=diff)
@@ -81,7 +78,6 @@ def random_redis():
 @app.route('/4',methods=['POST','GET'])
 def c():
     start=time.time()
-    array =[]
     array1=[]
     idFrom=request.args.get('idFrom')
     idTo = request.args.get('idTo')
@@ -92,10 +88,9 @@ def c():
     cursor = conn.cursor()
     cursor.execute(q1)
     result=cursor.fetchall()
-    while row:
-        array1 = np.asarray(row)
-        array.append(array1)
-        row = cursor.fetchall()
+    for i in result:
+        j=numpy.asarray(i)
+        array1.append(j)
     end=time.time()
     diff=end-start
     return render_template('4.html',result=array1,time=diff)
