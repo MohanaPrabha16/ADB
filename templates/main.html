@@ -40,8 +40,8 @@ CSE 6331 - Assignment 03 -->
 
 
 <form action="/2" method="get">
-    <label> Enter a random value in RDB: </label>
-    <input type="text" name="rand" value=" " required><br>
+        <label> Range From : </label><input type="text" name="idFrom" value="" required><br>
+        <label> Range To : </label><input type="text" name="idTo" value="" required><br>
     <input type="submit" value="Show Details for RDB" class="btn btn-primary"/>
 </form>
 <br>
@@ -54,7 +54,9 @@ CSE 6331 - Assignment 03 -->
 
 <form action="/3" method="get">
         <label> Enter a random value in Redis: </label>
-        <input type="text" name="rand" value=" " required><br>
+        <input type="text" name="id" value=" " required><br>
+        <label> Range From : </label><input type="text" name="idFrom" value="" required><br>
+        <label> Depth From : </label><input type="text" name="idTo" value="" required><br>
         <input type="submit" value="Show Details for Redis" class="btn btn-primary"/>
     </form>
     <br>

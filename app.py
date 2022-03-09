@@ -37,9 +37,9 @@ def createTable1():
 def random():
     start=time.time()
     array1=[]
-    rand= request.args.get('rand')
+    rand= request.args.get('id')
     print(rand)
-    q1= "select top {}* from [dbo].[earthquakes] order by rand()".format(rand)
+    q1= "SELECT * FROM [dbo].[ni] WHERE id BETWEEN 2345 AND 5555 ORDER BY name"
     conn = pymssql.connect(server='adb1.database.windows.net', user='admin1', port='1433', password='Ajithsivadas#1', database='AssignmentADB1')
     cursor = conn.cursor()
     cursor.execute(q1)
