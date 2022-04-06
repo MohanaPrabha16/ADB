@@ -1,125 +1,124 @@
-#MOHANA PRABHA PALANISAMY
-#1001886353
-#CSE 6331 - Assignment 03
-
-
+from dataclasses import replace
 from flask import Flask, render_template,request
-import numpy as numpy
-import pymssql
-import time
-import redis
-import hashlib
-import pickle
-app = Flask(__name__)
+import os.path
+import nltk
+import re
+from nltk.stem.snowball import SnowballStemmer
 
-myHostname = "redisadb.redis.cache.windows.net"
-myPassword = "CqXYuyQdw3MScVFMT3fkLyB4eAp9Zm0hOAzCaEc2SVE="
-r = redis.StrictRedis(host=myHostname, port=6380, password=myPassword, ssl=True)
+
+app = Flask(__name__)
+nltk.download('punkt')
+
+
+englishStopWordsLoc="./englishStopWords.txt"
+spanishStopWordsLoc = "./spanishStopWords.txt"
+
+with open(englishStopWordsLoc,'r') as f1:
+    englishStopWords=f1.readlines()
+    englishStopWords= [i.strip() for i in englishStopWordsLoc]
+
+with open(spanishStopWordsLoc,'r') as f1:
+    spanishStopWordsLoc=f1.readlines()
+    spanishStopWordsLoc= [i.strip() for i in spanishStopWordsLoc]
+
+stemmer = SnowballStemmer(language='english')
 
 @app.route('/')
-def index():
-    return render_template('main.html')
+def home():
+   print(1)
+   return render_template('main.html')
 
-@app.route('/1',methods=['POST','GET'])
-def createTable1():
-    start= time.time()
-    tablename= str(request.args.get('tablename'))
-    array1=[]
-    q1= "CREATE TABLE {}(time nvarchar(50) NOT NULL,latitude float NOT NULL,longitude float NOT NULL,depth float,mag float,type nvarchar(50) NOT NULL,gap float,net nvarchar(50),id nvarchar(50),place nvarchar(100));".format(tablename)
-    conn = pymssql.connect(server='adb1.database.windows.net', user='admin1', port='1433', password='Ajithsivadas#1', database='AssignmentADB1')
-    cursor = conn.cursor()
-    cursor.execute(q1)
-    end= time.time()
-    diff=end-start
-    return render_template('main.html',result=diff)
-#5
-@app.route('/2',methods=['POST','get'])
-def random():
-    start=time.time()
-    array1=[]
-    idFrom=request.args.get('idFrom')
-    idTo = request.args.get('idTo')
-    rand= request.args.get('id')
-    print(rand)
-    q1= "select * from [dbo].[ni] where id between '"+str(idFrom)+"' and '"+str(idTo)+"' order by id Desc"
-    conn = pymssql.connect(server='adb1.database.windows.net', user='admin1', port='1433', password='Ajithsivadas#1', database='AssignmentADB1')
-    cursor = conn.cursor()
-    cursor.execute(q1)
-    result=cursor.fetchall()
-    for i in result:
-        j=numpy.asarray(i)
-        array1.append(j)
-    end=time.time()
-    diff=end-start
-    return render_template('1.html',result=array1,time=diff)
+@app.route('/1')
+def addnew():
+   return render_template('1.html')
+
+@app.route('/2')
+def search():
+   return render_template('2.html')
 
 
-#6a
-@app.route('/3',methods=['POST','get'])
-def random1():
-    start=time.time()
-    array1=[]
-    idFrom=request.args.get('idFrom')
-    idTo = request.args.get('idTo')
-    rand= request.args.get('id')
-    print(rand)
-    q1= "select n.id,n.name,d.pwd,d.code from [dbo].[ni] n inner join [dbo].[di] d on d.id = n.id where n.id between '"+str(idFrom)+"' and '"+str(idTo)+"' order by id Desc "
-    conn = pymssql.connect(server='adb1.database.windows.net', user='admin1', port='1433', password='Ajithsivadas#1', database='AssignmentADB1')
-    cursor = conn.cursor()
-    cursor.execute(q1)
-    result=cursor.fetchall()
-    for i in result:
-        j=numpy.asarray(i)
-        array1.append(j)
-    end=time.time()
-    diff=end-start
-    return render_template('1.html',result=array1,time=diff)
+@app.route('/1form',methods = ['POST', 'GET'])
+def addnewfileform():
+   filename = request.form['filename']
+   filecontent = request.form['filecontent']
+   msg=""
+   if os.path.isfile("files/"+filename+".txt"):
+      msg = "File "+filename+" already exists"
+      return render_template('1.html',msg=msg)
+   
+   if(filename.strip()!="" and filecontent.strip()!=""):
+      name="files/"+filename+".txt"
+      fw =open(name,"w+")
+      fw.write(filecontent)
+      fw.close()
+      f = open("files/filelist.txt", "a")
+      f.write(filename+".txt\n")
+      f.close()
+      msg="File "+filename+" creation was successful"
+   else:
+      msg="Enter valid file name and file content"
+   return render_template('1.html',msg=msg)
 
-@app.route('/4',methods=['POST','GET'])
-def c():
-    start=time.time()
-    array1=[]
-    idFrom=request.args.get('idFrom')
-    idTo = request.args.get('idTo')
-    list_of_data= []
 
-    q1= "select n.id,n.name,d.pwd,d.code from [dbo].[ni] n inner join [dbo].[di] d on d.id = n.id where n.id between '"+str(idFrom)+"' and '"+str(idTo)+"' order by id Desc "
-    conn = pymssql.connect(server='adb1.database.windows.net', user='admin1', port='1433', password='Ajithsivadas#1', database='AssignmentADB1')
-    cursor = conn.cursor()
-    cursor.execute(q1)
-    result=cursor.fetchall()
-    for i in result:
-        j=numpy.asarray(i)
-        array1.append(j)
-    end=time.time()
-    diff=end-start
-    return render_template('4.html',result=array1,time=diff)
+@app.route('/send',methods = ['POST', 'GET'])
+def send():
+   print(1)
+   searchtext = request.form['searchtext']
+   print(searchtext)
+   searchTextList = searchtext.split(" ")
+   for i in range(len(searchTextList)):
+      searchTextList[i] =  stemmer.stem(searchTextList[i])
+   lst=[]
+   if searchtext.strip()!="":
+      msg = "Search results for "+searchtext
+      f = open("files/filelist.txt","r",errors='ignore')
+      filelist = f.readlines()
+      f.close()
+      filelist = [x.strip() for x in filelist]
+      for file in filelist:
+         txt="./files/"+file
+         with open(txt,"r",errors='ignore') as f:
+            lines = f.readlines()
+            for i in range(len(lines)):
+               lines[i]=lines[i].strip()
+               lines[i] = re.sub(r"http\S+", "", lines[i])
+               lines[i] = re.sub(r'[^\w\,]+', ' ', lines[i])
+               #lines[i]=re.sub('[^A-Za-z]+', ' ', lines[i])
+               tokens = nltk.word_tokenize(lines[i])
+               tokens=[x.lower() for x in tokens]
+               stemmedWords = [stemmer.stem(x) for x in tokens]
+               filteredWords=[]
+               for word in stemmedWords:
+                  if word not in englishStopWordsLoc and word not in spanishStopWordsLoc:
+                     filteredWords.append(word)
+               lines[i]=filteredWords
 
-@app.route('/5',methods=['POST','GET'])
-def cd():
-    start=time.time()
-    array1=[]
-    location= str(request.form['location1'])
-    depth_from= float(request.form['depthFrom1'])
-    depth_to= float(request.form['depthTo1'])
-    list_of_data= []
+            with open("files/"+file, 'r',errors='ignore') as f1:
+               origFile = f1.readlines()
+            
+            lst1=[]
+            lineNum = []
+            for x,line in enumerate(lines):
+                  for i in line:
+                     for j in searchTextList:
+                        if i == j.lower() and x not in lineNum:
+                           lineNum.append(x)
+                           final = origFile[x]
+                           final = final.replace("Â", "")
+                           final = final.replace("â€™", "'")
+                           final = final.replace("â€œ", '"')
+                           final = final.replace('â€“', '-')
+                           final = final.replace('â€', '"')
+                           lst1.append(final.strip())
+            if len(lst1)>0:
+               lst.append([file,lst1])
+      print(lst)
+   else:
+      msg="Please enter valid search text"
+  
+   return render_template('2.html',msg=msg,lst=lst)
 
-    q1= "select * from [dbo].[earthquakes] where place like '%"+str(location)+"%'AND depth BETWEEN '"+str(depth_from)+"' AND '"+str(depth_to)+"'"
-    conn = pymssql.connect(server='adb1.database.windows.net', user='admin1', port='1433', password='Ajithsivadas#1', database='AssignmentADB1')
-    cursor = conn.cursor()
-    key = hashlib.sha224(q1.encode('utf-8')).hexdigest()
-    if (r.get(key)):
-        print("redis cached ")
-    else:
-        cursor.execute(q1)
-        array1 = cursor.fetchall()
-        r.set(key, pickle.dumps(array1) )
-        r.expire(key, 3600)
-    cursor.execute(q1)
-    result=cursor.fetchall()
-    for i in result:
-        j=numpy.asarray(i)
-        array1.append(j)
-    end=time.time()
-    diff=end-start
-    return render_template('4.html',result=array1,time=diff)
+   
+if __name__ == '__main__':
+    app.run()
+    

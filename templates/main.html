@@ -1,89 +1,22 @@
-<!-- MOHANA PRABHA PALANISAMY
-1001886353
-CSE 6331 - Assignment 03 -->
-
-
-
-
 <!DOCTYPE html>
-<html>
-<div style="text-align: center;">
-<h1>Mohana Prabha Palanisamy</h1>
-<h2>1001886353</h2>
-</div>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Home</title>
+  </head>
+  <body>
+    <center>
+      <div>
+        <h1>Mohana Prabha Palanisamy</h1>
+        <h2>1001886353</h2>
 
-
-<hr>
-<divclass="container">
-
-<h4 style="font-weight:bold"> Task 1:</h4>
-
-
-
-<form action="/1" method="POST">
-<label> Enter a Table Name: </label>
-<input type="text" name="tablename" value=" " required><br>
-<input type="submit" value="Show Details for RDB" class="btn btn-primary"/>
-</form>
-<br>
-</div>
-{% if result %}
-<h4>Time elapsed: {{result}} seconds</h4>
-
-<h4>Table has been Created</h4> 
-
-{% endif %}
-<divclass="container">
-
-<h4 style="font-weight:bold"> Task 2:</h4>
-
-
-
-<form action="/2" method="get">
-        <label> Range From : </label><input type="text" name="idFrom" value="" required><br>
-        <label> Range To : </label><input type="text" name="idTo" value="" required><br>
-    <input type="submit" value="Show Details for RDB" class="btn btn-primary"/>
-</form>
-<br>
-
-<divclass="container">
-
-<h4 style="font-weight:bold"> Task 3:</h4>
-
-
-
-<form action="/3" method="get">
-    <label> Range From : </label><input type="text" name="idFrom" value="" required><br>
-    <label> Range To : </label><input type="text" name="idTo" value="" required><br>
-        <input type="submit" value="Show Details" class="btn btn-primary"/>
-    </form>
-    <br>
-
-
-<divclass="container">
-
-<h4 style="font-weight:bold"> Task 4:</h4>
-
-
-
-<form action="/4" method="POST">
-    <label> Range From : </label><input type="text" name="idFrom" value="" required><br>
-    <label> Range To : </label><input type="text" name="idTo" value="" required><br>
-
-
-<input type="submit" value="Show Details in RDB" class="btn btn-primary"/>
-</form>
-<br>
-
-<h4 style="font-weight:bold"> Task 5:</h4>
-
-<form action="/5" method="POST">
-    <label> Location: </label><input type="text" name="location1" value="" required><br>
-    <label> Depth From : </label><input type="text" name="depthFrom1" value="" required><br>
-    <label> Depth To : </label><input type="text" name="depthTo1" value="" required><br>
-    
-    <input type="submit" value="Show Details in Redis" class="btn btn-primary"/>
-    </form>
-    <br>
+        <div>
+          <a class="btn" href="1">Add new file</a>
+        </div>
+        <div>
+          <a class="btn" href="2">Search</a>
+        </div>
+      </div>
+    </center>
+  </body>
 </html>
- 

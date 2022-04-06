@@ -1,84 +1,47 @@
-<!-- MOHANA PRABHA PALANISAMY
-1001886353
-CSE 6331 - Assignment 03 -->
-
-
 <!DOCTYPE html>
-<html>
-<div style="text-align: center;">
-<h1>Mohana Prabha Palanisamy</h1>
-<h2>1001886353</h2>
-</div>
-{% if time %}
-<h4>Time elapsed: {{time}} seconds</h4>
-{% endif %}
-<div class="container" style="text-align: center;">
-    {% if result|length>0 %}
-    <div class="table-responsive">
-    <table class="table table-striped">
-    <thead>
-    <tr>
-    <th scope="col">name</th>
-    <th scope="col">id</th>
-    <!-- <th scope="col">longitude</th>
-    <th scope="col">depth</th>
-    <th scope="col">mag</th>
-    <th scope="col">magType</th>
-    <th scope="col">nst</th>
-    <th scope="col">gap</th>
-    <th scope="col">dmin</th>
-    <th scope="col">rms</th>
-    <th scope="col">net</th>
-    <th scope="col">id</th>
-    <th scope="col">updated</th>
-    <th scope="col">place</th>
-    <th scope="col">type</th>
-    <th scope="col">horizontalError</th>
-    <th scope="col">depthError</th>
-    <th scope="col">magError</th>
-    <th scope="col">magNst</th>
-    <th scope="col">status</th>
-    <th scope="col">locationSource</th>
-    <th scope="col">magSource</th> -->
-    </tr>
-    </thead>
-    <tbody>
-    {% for data in result %}
-    <tr>
-    <td>{{ data[0] }}</td>
-    <td>{{ data[1] }}</td>
-    <!-- <td>{{ data[2] }}</td>
-    <td>{{ data[3] }}</td>
-    <td>{{ data[4] }}</td>
-    <td>{{ data[5] }}</td>
-    <td>{{ data[6] }}</td>
-    <td>{{ data[7] }}</td>
-    <td>{{ data[8] }}</td>
-    <td>{{ data[9] }}</td>
-    <td>{{ data[10] }}</td>
-    <td>{{ data[11] }}</td>
-    <td>{{ data[12] }}</td>
-    <td>{{ data[13] }}</td>
-    <td>{{ data[14] }}</td>
-    <td>{{ data[15] }}</td>
-    <td>{{ data[16] }}</td>
-    <td>{{ data[17] }}</td>
-    <td>{{ data[18] }}</td>
-    <td>{{ data[19] }}</td>
-    <td>{{ data[20] }}</td>
-    <td>{{ data[21] }}</td> -->
-    </tr>
-    {% endfor %}
-    </tbody>
-    </table>
-    </div>
-    {% else %}
-    <h4>No data available..</h4>
-    {% endif %}
-    
-    </div>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Home</title>
+  </head>
+  <body>
+    <center>
+      <div>
+        <div>
+          <a href="{{ url_for('home') }}" class="btn">Home</a>
+        </div>
+        <form action="1form" method="post">
+          <div>
+            <input
+              type="text"
+              name="filename"
+              placeholder="Name of the new file"
+              min="1"
+              max="100"
+              autocomplete="off"
+              required
+            />
+          </div>
+          <div>
+            <textarea
+              class="text"
+              name="filecontent"
+              placeholder="Content"
+              min="1"
+              required
+            ></textarea>
+          </div>
+          <div>
+            <input type="submit" value="Submit" onclick="hide()" />
+          </div>
+        </form>
 
-
-
+        {% if msg %}
+        <div>
+          <p>{{ msg }}</p>
+        </div>
+        {% endif %}
+      </div>
+    </center>
+  </body>
 </html>
- 

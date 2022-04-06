@@ -1,5 +1,3 @@
-Flask
-pymssql
-numpy
-redis
-pandas
+nltk==3.5
+Flask==2.0.2
+regex==2022.3.15
