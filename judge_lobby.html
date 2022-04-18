@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"
+      integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA=="
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="{{ url_for('static', filename='scripts/socketio.js') }}"></script>
+  </head>
+
+  <body>
+    <center>
+      <div style="padding-top: 50px">
+        <div>
+          room id: {{ roomCode }} role: {{ role }}
+          <form action="/game/{{roomCode}}/{{role}}" method = "post" style="text-align: center;">
+            
+        
+          <h4>Enter Number of Stones in Pile1: </h4>
+          <div >
+          <input type = "text" name = "pile1" placeholder = "Enter a number" required/>
+          </div>
+        
+          <h4>Enter Number of Stones in Pile2</h4>
+          <div >
+          <input type = "text" name = "pile2" placeholder = "Enter a number" required/>
+          </div>
+        
+          <h4>Enter Number of Stones in Pile3</h4>
+          <div >
+          <input type = "text" name = "pile3" placeholder = "Enter a number" required/>
+          </div>
+        
+        
+          <h4>Enter minimum # of stones:</h4>
+          <div >
+          <input type = "text" name = "min" placeholder = "Enter a number" required/>
+          </div>
+        
+          <h4>Enter maximum # of stones:</h4>
+          <div >
+          <input type = "text" name = "max" placeholder = "Enter a number" required/>
+          </div>
+        
+        
+        </body>
+                <h4>Which player plays first?</h4>
+            <div >
+                <input type = "text" name = "firstPlayer" placeholder = "Enter either Player 1 or Player 2" required/>
+                </div>
+            <div>
+              <input type="submit" value="Start Game" />
+            </div>
+          </form>
+        </div>
+      </div>
+    </center>
+  </body>
+</html>
