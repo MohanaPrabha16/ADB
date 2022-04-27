@@ -1,5 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+     <script type="text/javascript">
+
+    // below line used for loading the Visualization API and the corechart package.
+    google.charts.load('current', {'packages':['corechart']})
+google.charts.setOnLoadCallback(pieChart);
+    
+     // Callback that creates and populates the table
+    function pieChart() {
+      // Create the table
+      var data = new google.visualization.arrayToDataTable([
+          ['Word','Count'],
+          {% for value in data %}
+                {% if value[1] is string %}
+                    ['{{value[0]}}','{{value[1]}}'],
+                {% else %}
+                    ['{{value[0]}}',{{value[1]}}],
+                {% endif %}
+            {% endfor %}
+        ]);
+    // Set chart options
+    var options = {'title':'word frequency',
+                        is3D: true,
+                       'width':800,
+                       'height':600};
+    // Instantiate and draw the chart
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        chart.draw(data, options);
+      }
+    </script>
   <head>
     <meta charset="UTF-8" />
     <title>Home</title>
@@ -49,22 +79,17 @@
           </div>
         </form>
       </div>
-      {% if msg %}
+      {% if data %}
       <div>
-        <p>{{ msg }}</p>
+        <p>{{ data }}</p>
       </div>
-      {% endif %} {% if lst %} {% for i in lst %}
+      
+      {% endif %} 
+      {% if list1 %}
       <div>
-        <p>File name: <b>{{ i[0] }}</b></p>
-        {% if i[1] %} {% for j in i[1] %}
-        <div>{{j}}</div>
-        {% endfor %} {% endif %}
+        <p>{{ list1 }}</p>
       </div>
-      {% endfor %} {% endif %}
-      {% if msg and not lst%}
-        <div>
-            <p>No results found</p>
-      {% endif %}
+      {% endif %} 
     </center>
   </body>
 </html>

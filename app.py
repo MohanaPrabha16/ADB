@@ -10,8 +10,6 @@ from collections import Counter
 app = Flask(__name__)
 nltk.download('punkt')
 
-conn = pymssql.connect(server='adbassignment4.database.windows.net', user='admin', password='Ajithsivadas#1', database='adb4')
-cursor = conn.cursor()
 
 englishStopWordsLoc="./englishStopWords.txt"
 spanishStopWordsLoc = "./spanishStopWords.txt"
@@ -70,12 +68,15 @@ def send():
    number2 = request.form['number2']
    searchtext = request.form['searchtext']
    print(searchtext)
-   split_it = searchtext.split()
+   split1 = searchtext.split()
    from collections import Counter
-   Counter = Counter(split_it)
+   Counter = Counter(split1)
    most_occur = Counter.most_common(int(number1))
-   
-   return render_template('2.html',msg=most_occur)
+   list1=[]
+   for i in split1:
+       if(len(i)<=int(number2)):
+        list1.append((i,len(i)))
+   return render_template('2.html',data=most_occur,list1=list1)
 
    
 if __name__ == '__main__':
