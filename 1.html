@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Home</title>
+  </head>
+  <body>
+    <center>
+      <div>
+        <div>
+          <a href="{{ url_for('main') }}" class="btn">Main Page</a>
+        </div>
+        <form action="1form" method="post">
+          <div>
+              <h4>Enter any number:</h4>
+            <input
+              type="number"
+              name="filename"
+              placeholder="N"
+              min="1"
+              autocomplete="off"
+              required
+            />
+          </div>
+          <div>
+            <h4>Enter any number:</h4>
+            <input
+              type="number"
+              name="filename"
+              placeholder="L"
+              min="1"
+              autocomplete="off"
+              required
+            />
+          </div>
+          <div>
+            <h4>Enter any content:</h4>
+            <textarea
+              class="text"
+              name="filecontent"
+              placeholder=" "
+              min="1"
+              max="800"
+              required
+            ></textarea>
+          </div>
+          <div>
+            <input type="submit" value="Submit" onclick="hide()" />
+          </div>
+        </form>
+
+        {% if msg %}
+        <div>
+          <p>{{ msg }}</p>
+        </div>
+        {% endif %}
+      </div>
+    </center>
+  </body>
+</html>
